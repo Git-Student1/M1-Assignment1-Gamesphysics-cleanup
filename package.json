@@ -1,0 +1,8 @@
+{
+    "name": "game-pysics",
+    "version": "1.0.0",
+    "scripts":{
+        "style:all" : "npm run style:lint",
+        "style:lint" : "eslint '**/*.{js}' "
+    }
+}
