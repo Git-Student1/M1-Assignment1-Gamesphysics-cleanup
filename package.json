@@ -2,8 +2,8 @@
     "name": "game-pysics",
     "version": "1.0.0",
     "scripts": {
-        "style:all": "npm run style:lint",
-        "style:lint": "eslint '**/*.{js}'"
+        "style:all": "npm run yarn style:lint",
+        "style:lint": " eslint '**/*.{js}'"
     },
     "devDependencies": {
         "@eslint/js": "^9.14.0",
