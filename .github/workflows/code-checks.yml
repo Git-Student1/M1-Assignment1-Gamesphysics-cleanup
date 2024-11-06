@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Run code style checks
-      run: npm run style:all
+      run: yarn run style:all
     #- run: npm ci
     #- run: npm run build --if-present
     #- run: npm test
