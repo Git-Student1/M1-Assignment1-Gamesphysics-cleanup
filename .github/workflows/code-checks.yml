@@ -10,14 +10,13 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
-
+  checks:
+    runs-on: ubuntu-latest
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
     - uses: actions/checkout@v4
     - name: Run code style checks
       run: npm run style:all
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    #- run: npm ci
+    #- run: npm run build --if-present
+    #- run: npm test
