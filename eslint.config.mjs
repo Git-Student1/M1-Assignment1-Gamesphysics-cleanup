@@ -6,9 +6,10 @@ import pluginJs from "@eslint/js";
 export default [
   {
     ignores: ["p5/*", "**/Game_Uebung_11.js" ],
+    files: ['**/GameEngines Übung 11/**.js']
   },
   {
-    files: ['**/GameEngines Übung 11/**.js']
+    
   },
   {
     
