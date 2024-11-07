@@ -10,9 +10,7 @@ class SegmentBallData{
 
     getCurrentSegmentBallData(){
         if(this._pointOnSegment<this._segment._limitLeft) {
-
             return new SegmentBallData(this._segment.getSegmentLeft(), this._segment.getSegmentLeft().getLimiterRight())
-
         }
         if(this._pointOnSegment>this._segment._limitRight){
 
@@ -68,7 +66,7 @@ function checkCollisionWithSegments(ball,segmentArray, segmentBallData){
     if(!(segmentArray instanceof Array)) throw new Error("segmentArray is not instance of Array")
     if(!(segmentBallData instanceof SegmentBallData)) throw new Error("segmentBallData is not instance of SegmentBallData")
 
-    for(segmentIndex in segmentArray){
+    for(let segmentIndex in segmentArray){
         let segment = segmentArray[segmentIndex]
 
         let data = calulateCollisionPoint(ball, segment,segmentIndex)
@@ -78,7 +76,6 @@ function checkCollisionWithSegments(ball,segmentArray, segmentBallData){
             return 
         }
     } 
-    return 
 }
 
 function checkCollisionBallLines(ball, pointArray){
@@ -207,15 +204,10 @@ function collisionBalls(ball1, ball2, dt){
     if(!(ball1 instanceof ThrowBall)) throw new Error("ball1 is not instance of Throwball")
     if(!(ball2 instanceof ThrowBall)) throw new Error("ball2 is not instance of Throwball")
     let collisionTime = this.collisionTimeBalls2D(ball1, ball2)
-    if(collisionTime<=dt && collisionTime>0) return true
-    else return false
+    return collisionTime<=dt && collisionTime>0;
 }
 function collisionBallsAir(ball1, ball2, dt){
-    if(!(ball1 instanceof ThrowBall)) throw new Error("ball1 is not instance of Throwball")
-    if(!(ball2 instanceof ThrowBall)) throw new Error("ball2 is not instance of Throwball")
-    let collisionTime = this.collisionTimeBalls2D(ball1, ball2)
-    if(collisionTime<=dt && collisionTime>0) return true
-    else return false
+    return collisionBalls(ball1, ball2, dt)
 }
 
 function collisionTimeBalls2D(ball1, ball2, logTimes){

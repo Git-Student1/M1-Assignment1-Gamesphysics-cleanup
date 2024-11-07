@@ -1,7 +1,7 @@
 
 class ThrowBall extends CircleObject{
     
-   // stateMachine = new BallStateMachine(this)
+    //stateMachine = new BallStateMachine(this)
     stuckToSeesaw = true
     _gravitation = 9.81 // m/s^2
     lastVelocityX = 0
@@ -152,7 +152,7 @@ class ThrowBall extends CircleObject{
 
         //rotate velocity  to fit the segment
         let normalisedSegmentVector = segmentBallData._segment.segmentVector.normalised()
-        let angle = Math.atan(normalisedSegmentVector._y, normalisedSegmentVector._x)
+        let angle = Math.atan2(normalisedSegmentVector._y, normalisedSegmentVector._x)
 
         //on slope velocity
         let onSlopeVelocity = velocity.rotated(angle)
@@ -189,72 +189,8 @@ class ThrowBall extends CircleObject{
     }
     
 
-    #calulateNextPositionOnSlope1(dt,segmentBallData){
-        if(!(segmentBallData instanceof SegmentBallData)) throw new Error("segmentBallData is not of type SegmentBallData")
-        if(!(segmentBallData._segment instanceof Segment)) throw new Error("segment in segmentBallData is not of type Segment")
-
-        //this.velocityY = this.velocityY //-this._gravitation *Math.sin(slopeAngle)*dt
-        //this.velocityX = this.velocityX //-this._gravitation *Math.cos(slopeAngle)*dt
-        
-        //apply gravitataion
-        //rotate velocity  to fit the segment
-        //set new velocityY 0 becuase the ball moves on the segment and connot fall through
-        //calulate the next position 
-        //rotate velocity back and save new velocity value
-        //apply gravitataion
-        this.velocityY = this.velocityY - this._gravitation * dt
-        
-       // this.velocityX = this.velocityX - this._gravitation * 
-        let velocity = new Vector(this.velocityX, this.velocityY)
-
-        //rotate velocity  to fit the segment
-        let normalisedSegmentVector = segmentBallData._segment.segmentVector.normalised()
-        let angle = Math.atan(normalisedSegmentVector._y, normalisedSegmentVector._x)
-
-        //on slope velocity
-        let onSlopeVelocity = velocity.rotated(angle)
-        onSlopeVelocity._y = 0
 
 
-        segmentBallData._pointOnSegment += onSlopeVelocity._x * dt
-
-        //let newPositionVector = segmentBallData._segment.vectorToPointOnSegment()
-        
-        
-        //converting back the on slope velocity to the "normal" velocity
-        velocity = onSlopeVelocity.rotated(-angle)
-        this.velocityY = velocity._y
-        this.velocityX = velocity._x
-        
-        this.centerY = this.centerY + this.velocityY * dt //- gravitationAccelerataion
-        this.centerX = this.centerX + this.velocityX * dt   
-        
-    }
-
-
-
-
-/*
-    calulatePosition(rotationValue, dt){
-        let state = this.stateMachine.ballState
-        let states = this.stateMachine.ballStates
-        switch(state){
-            case states.ONFLIGHT:{
-                this.calulateNextPositionObliqueThrow(dt)
-                break
-            }
-            case states.ONSEESAW:{
-                this.rotateAroundSeesawCenter(rotationValue)
-                break
-            }
-            
-                
-
-            
-        }
-  
-    }
-    */
 
     /**
      * sets the start velocity of the throwBall

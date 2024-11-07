@@ -13,7 +13,7 @@ class SeesawRotation{
         this.rotationOffset = rotationOffset
         this.rotationCenterX = rotationCenterX
         this.rotationCenterY = rotationCenterY
-    }
+    } 
 
     /**
      * limits the rotation between upper and lower border defined by maxRotationValue
@@ -23,7 +23,7 @@ class SeesawRotation{
         if(this.outsideRotationBorderUpper()) this._rotationValue = this.upperBorder
     }
 
-    /**
+    /** 
      * checks in the roatiaonValue is in below the lower Border
      * @returns - boolean
      */
@@ -41,7 +41,7 @@ class SeesawRotation{
 
     inMaxRotationRange(){
         if(this.outsideRotationBorderLower())return false;
-        if(this.outsideRotationBorderUpper())return false;
+        else if(this.outsideRotationBorderUpper())return false;
         return true
     }
 
@@ -174,6 +174,6 @@ class SeesawRotationRight extends SeesawRotation{
     }
     
     get90DegreeAngleToCurrentOne(){
-        return this._rotationValue + 90
+        return this._rotationValue + 90 
     }
 }

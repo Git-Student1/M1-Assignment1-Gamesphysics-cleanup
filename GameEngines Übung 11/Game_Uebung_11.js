@@ -25,6 +25,7 @@
  */
 
 
+
 /**
  * ungenauigkeit bei der berechnung der ball position
  * mögliche ursachen: 
@@ -538,8 +539,8 @@ function gameProcess(seesaw, throwball, sensitiveCircle, state, segmentBallData,
         }
 
         cochonnet.calulateNextPositionOnSlope(dt , cochonnetSegmentBallData)
-        switch(otherThrowBallState.state){
-          case otherThrowBallState.ONSLOPE:
+
+        if(otherThrowBallState.state === otherThrowBallState.ONSLOPE){
             otherThrowBall.calulateNextPositionOnSlope(dt, otherSegmentBallData)
         }
        
@@ -558,7 +559,7 @@ function gameProcess(seesaw, throwball, sensitiveCircle, state, segmentBallData,
 
         //TODO: overlimit check after movement, makes the movement more fluent, currently 1 frame lag
          deltaTimeOverLimitThrowball = handleMovementOverSegmentLimits(throwball, segmentBallData)
-         deltaTimeOverLimitThrowball = handleMovementOverSegmentLimits(cochonnet, cochonnetSegmentBallData)
+         deltaTimeOverLimitCochonnet = handleMovementOverSegmentLimits(cochonnet, cochonnetSegmentBallData)
          if(otherThrowBallState.state === otherThrowBallState.ONSLOPE)
          deltaTimeOverLimitOtherThrowball = handleMovementOverSegmentLimits(otherThrowBall, otherSegmentBallData)
         

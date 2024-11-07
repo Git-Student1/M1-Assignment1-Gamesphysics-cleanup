@@ -1,3 +1,4 @@
+import ThrowBall from "throwball.js"
 class BallStateMachine{
 
     ballStates = {

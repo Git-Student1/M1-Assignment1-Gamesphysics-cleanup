@@ -17,7 +17,7 @@ class CollisionCircle{
      */
     checkIntersectionCircle(circleCollisionBox){
         //make sure that the inserted parameter is of type CollisionBoxCircle
-        if(!circleCollisionBox instanceof CollisionCircle) throw new Error("collisionBox not of type CollisionBoxCircle as required")
+        if(!(circleCollisionBox instanceof CollisionCircle)) throw new Error("collisionBox not of type CollisionBoxCircle as required")
         let deltaX = this._centerX - circleCollisionBox._centerX
         let deltaY = this._centerY - circleCollisionBox._centerY
         let distance = Math.sqrt(Math.pow(deltaX,2)+Math.pow(deltaY, 2))
@@ -38,17 +38,17 @@ class CollisionCircle{
 
         if(!collisionLineCenter.x || !collisionLineCenter.y) throw new Error("point parameter has no x and/or y value")
         //create second point from rotataionValue
-        let point2OnLine;
+        let point2OnLine = {};
         point2OnLine.x = collisionLineCenter.x + Math.cos(radians(rotationDegree))
         point2OnLine.y = collisionLineCenter.y + Math.sin(radians(rotationDegree))
 
         //calulate line Vector
-        let lineVector
+        let lineVector = {}
         lineVector.x = collisionLineCenter.x - point2OnLine.x
         lineVector.y = collisionLineCenter.y - point2OnLine.y
 
         //calulate linePointToPointVector
-        let linePointToPointVector
+        let linePointToPointVector = {}
         linePointToPointVector.x = collisionLineCenter.x -this._centerX
         linePointToPointVector.y = collisionLineCenter.y -this._centerY
        
@@ -64,7 +64,6 @@ class CollisionCircle{
         //limit the collision to the length of the line, so that the line is not infinite 
         if(centerX - this._diameter < minX || centerX + this._diameter>maxX) return false
         //intersection if the distance is smaller than the diameter 
-        if(distance<this._diameter) return true
-        return false
+        return distance<this._diameter
     }
 }

@@ -5,7 +5,7 @@ class Vector{
      * @param {Number} y 
      */
     constructor(x,y){
-        if(!( typeof x === "number") || !(typeof y === "number")) throw new Error("x or y are not of type number")
+        if(typeof x !== "number" || typeof y !== "number") throw new Error("x or y are not of type number")
         this._x = x
         this._y = y
     }
@@ -38,14 +38,14 @@ class Vector{
         return Math.sqrt(Math.pow(this._x,2) + Math.pow(this._y,2))
     }
 
-    add(vector){
+    add_vector(vector){
         if(!(vector instanceof Vector)) throw new Error("parameter has to be of type Vector")
         this._x += vector._x
         this._y += vector._y
     }
 
-    add(x,y){
-        if(!(typeof x === "number") || !(typeof y === "number") ) throw new Error("parameters have to be of type Number")
+    add_values(x,y){
+        if(typeof x !== "number" || typeof y !== "number" ) throw new Error("parameters have to be of type Number")
         this._x += x
         this._y += y
     }
@@ -59,7 +59,7 @@ class Vector{
 
     static mul(vector, value){
         if(!(vector instanceof Vector)) throw new Error("parameter has to be of type Vector")
-        if(!(typeof value === "number")) throw new Error("prameter has to be of type number")
+        if(typeof value !== "number") throw new Error("prameter has to be of type number")
         return new Vector(vector._x * value, vector._y * value)
     }
 
