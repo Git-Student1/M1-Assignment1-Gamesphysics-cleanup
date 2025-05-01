@@ -5,7 +5,7 @@ class Vector{
      * @param {Number} y 
      */
     constructor(x,y){
-        if(typeof x !== "number" || typeof y !== "number") throw new Error("x or y are not of type number")
+        if( typeof x !== "number" || typeof y !== "number") throw new Error("x or y are not of type number")
         this._x = x
         this._y = y
     }

@@ -319,7 +319,7 @@ t = t + dt;
   drawInfoText(gridX, gridY, sizeOfInfoText)
   updateDrawStartResetButton(gridX, gridY,sizeOfButtonText)
   updateWindArrow(gridX, gridY, sizeOfWindText)
-  drawResult(gridX, gridY, sizeOfInfoText)
+  drawResult(gridX, gridY, sizeOfResultText)
   
 
   if(gameData.playerTurn === gameData.playerTurns.PLAYER1)
