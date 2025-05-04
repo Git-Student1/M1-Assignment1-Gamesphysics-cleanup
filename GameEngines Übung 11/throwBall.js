@@ -1,5 +1,5 @@
-
-class ThrowBall extends CircleObject{
+import CircleObject from "./circleObject";
+export default class ThrowBall extends CircleObject{
     
     //stateMachine = new BallStateMachine(this)
     stuckToSeesaw = true
@@ -233,3 +233,6 @@ class ThrowBall extends CircleObject{
     
     
 }
+
+console.log("ThrowBall loaded")
+window.ThrowBall = ThrowBall;

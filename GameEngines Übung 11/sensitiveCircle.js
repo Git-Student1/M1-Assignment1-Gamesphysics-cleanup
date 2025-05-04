@@ -1,3 +1,5 @@
+import CircleObject from './CircleObject';
+
 class SensitiveCircle extends CircleObject{
   
 
@@ -52,3 +54,5 @@ class SensitiveCircle extends CircleObject{
 
 
 }
+
+window.SensitiveCircle = SensitiveCircle;

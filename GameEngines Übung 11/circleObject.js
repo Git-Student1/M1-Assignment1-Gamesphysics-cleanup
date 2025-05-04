@@ -1,5 +1,4 @@
-/*eslint no-unused-vars: ["error", { "argsIgnorePattern": "CircleObject" }]*/
-class CircleObject{
+export default class CircleObject{
     constructor(centerX, centerY, diameter,color, mass){
         if(this.constructor == CircleObject) {
             throw new Error("Class is of abstract type and can't be instantiated");
@@ -49,3 +48,5 @@ class CircleObject{
         ellipse(kXi(this.centerX*M), kYi(this.centerY*M), this.diameter*M, this.diameter*M)
     }
 }
+
+window.CircleObject = CircleObject;
