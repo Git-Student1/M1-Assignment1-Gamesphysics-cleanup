@@ -49,3 +49,5 @@ export default class CircleObject{
         ellipse(kXi(this.centerX*M), kYi(this.centerY*M), this.diameter*M, this.diameter*M)
     }
 }
+
+window.CircleObject = CircleObject;

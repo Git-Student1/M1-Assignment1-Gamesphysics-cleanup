@@ -236,3 +236,6 @@ export default class ThrowBall extends CircleObject{
     
     
 }
+
+console.log("ThrowBall loaded")
+window.ThrowBall = ThrowBall;

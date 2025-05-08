@@ -53,3 +53,5 @@ export default class SensitiveCircle extends CircleObject{
 
 
 }
+
+window.SensitiveCircle = SensitiveCircle;

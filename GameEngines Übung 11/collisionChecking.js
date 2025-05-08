@@ -111,7 +111,7 @@ export function checkCollisionWithSegent(ball, segment){
  * @param {*} linePoint2 
  * @returns 
  */
-function checkCollisionBallLine(ball, linePoint1, linePoint2){
+export function checkCollisionBallLine(ball, linePoint1, linePoint2){
     // vector from the point on the line to the cicle center (linePointToPointVector)
         // vector that represents the direction of the line (lineVector)
         // cross product of the vectors is the area of a paralellogram
@@ -295,3 +295,12 @@ export function calulateCollisionBallsInAir(ballOnSegment, ballInAir){
     ballInAir.velocityX = 0
     ballInAir.velocityY = 0
 }
+
+window.SegmentBallData = SegmentBallData;
+window.collisionBallsAir = collisionBallsAir;
+window.checkCollisionWithSegments = checkCollisionWithSegments;
+window.checkCollisionBallLines = checkCollisionBallLines;
+window.checkCollisionWithSegent = checkCollisionWithSegent;
+window.collisionBalls = collisionBalls;
+window.collisionTimeBalls2D = collisionTimeBalls2D;
+window.calculateCollisionBallsOnSegment = calculateCollisionBallsOnSegment;
