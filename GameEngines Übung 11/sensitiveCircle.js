@@ -1,4 +1,5 @@
-class SensitiveCircle extends CircleObject{
+import CircleObject from "./circleObject.js"
+export default class SensitiveCircle extends CircleObject{
   
 
   /**

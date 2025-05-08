@@ -1,4 +1,4 @@
- class StartResetButton{
+export default class StartResetButton{
     buttonTextStart = "Start"
     buttonTextReset = "Reset"
 

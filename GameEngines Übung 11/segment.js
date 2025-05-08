@@ -1,4 +1,5 @@
-class Segment{
+import Vector from "./vector.js"
+export default class Segment{
     constructor(point1, point2){
         if(!point1 || !point2) throw new Error("point1 or point2 are not defined")
         if(typeof point1.x !== "number" || typeof point1.y !== "number") throw new Error("point1 has no x and/or y value of type number")
@@ -77,7 +78,7 @@ class Segment{
         if(!this.segmentRight)throw new Error("segment is not set")
         return this.segmentRight
     }
-    drawLimiter(M){
+    drawLimiter(M, kXi, kYi){
         if(this._limitLeft){
             let limiterVectorLeft = Vector.add(this.p1Vector, Vector.mul(this.segmentVector.normalised() , this._limitLeft))
             ellipse(kXi(limiterVectorLeft._x*M),kYi(limiterVectorLeft._y*M), 2, 2)

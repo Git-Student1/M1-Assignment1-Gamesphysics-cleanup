@@ -1,4 +1,4 @@
-class Wind {
+export default class Wind {
 
     #maxValue = 5
     #minValue = -5

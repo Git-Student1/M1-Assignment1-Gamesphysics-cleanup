@@ -1,4 +1,7 @@
-class SegmentBallData{
+import Vector from "./vector.js"
+import ThrowBall from "./throwBall.js"
+import Segment from "./segment.js"
+export default class SegmentBallData{
     /**
      * custom data about the collision
      * @param {Segment} segment - collisionSegment
@@ -61,7 +64,7 @@ let currentSegmetnBallData = new SegmentBallData(null, null);
  * @param {CircleObject} ball 
  * @param {[Segment]} segmentArray 
  */
-function checkCollisionWithSegments(ball,segmentArray, segmentBallData){
+export function checkCollisionWithSegments(ball,segmentArray, segmentBallData){
     if(!(ball instanceof ThrowBall)) throw new Error("ball is not instance of Throwball")
     if(!(segmentArray instanceof Array)) throw new Error("segmentArray is not instance of Array")
     if(!(segmentBallData instanceof SegmentBallData)) throw new Error("segmentBallData is not instance of SegmentBallData")
@@ -76,7 +79,7 @@ function checkCollisionWithSegments(ball,segmentArray, segmentBallData){
     } 
 }
 
-function checkCollisionBallLines(ball, pointArray){
+export function checkCollisionBallLines(ball, pointArray){
     if(!(ball instanceof ThrowBall)) throw new Error("ball is not instance of Throwball")
     if(!(pointArray instanceof Array)) throw new Error("segmentArray is not instance of Array")
     
@@ -96,7 +99,7 @@ function checkCollisionBallLines(ball, pointArray){
 }
 
 
-function checkCollisionWithSegent(ball, segment){
+export function checkCollisionWithSegent(ball, segment){
     if(!(segment instanceof Segment)) throw new Error("segment is not instance of Segment")
     return checkCollisionBallLine(ball, segment._point1, segment._point2)
 }
@@ -153,7 +156,7 @@ function checkCollisionBallLine(ball, linePoint1, linePoint2){
 function drawLine(originVector, vector2){
     line(kXi((originVector._x) *M), kYi((originVector._y)*M), kXi((originVector._x+vector2._x) *M),kYi((originVector._y+ vector2._y) *M))
 }
-function drawLineOrigin(vector1){
+export function drawLineOrigin(vector1){
     drawLine(new Vector(0,0),vector1)
 }
 
@@ -198,22 +201,22 @@ function calulateCollisionPoint(ball, segment){
 
 
 
-function collisionBalls(ball1, ball2, dt){
+export function collisionBalls(ball1, ball2, dt){
     if(!(ball1 instanceof ThrowBall)) throw new Error("ball1 is not instance of Throwball")
     if(!(ball2 instanceof ThrowBall)) throw new Error("ball2 is not instance of Throwball")
-    let collisionTime = this.collisionTimeBalls2D(ball1, ball2)
+    let collisionTime = collisionTimeBalls2D(ball1, ball2)
     if(collisionTime<=dt && collisionTime>0) return true
     else return false
 }
-function collisionBallsAir(ball1, ball2, dt){
+export function collisionBallsAir(ball1, ball2, dt){
     if(!(ball1 instanceof ThrowBall)) throw new Error("ball1 is not instance of Throwball")
     if(!(ball2 instanceof ThrowBall)) throw new Error("ball2 is not instance of Throwball")
-    let collisionTime = this.collisionTimeBalls2D(ball1, ball2)
+    let collisionTime = collisionTimeBalls2D(ball1, ball2)
     if(collisionTime<=dt && collisionTime>0) return true
     else return false
 }
 
-function collisionTimeBalls2D(ball1, ball2, logTimes){
+export function collisionTimeBalls2D(ball1, ball2, logTimes){
     let collisionTimes = []
     let collisionTime1 = ( ball1.diameter/2 + ball2.diameter/2 + Math.sqrt(Math.pow(ball1.centerX - ball2.centerX,2) + Math.pow(ball2.centerY - ball1.centerY,2))) / Math.sqrt(Math.pow(ball2.velocityX - ball1.velocityX,2) + Math.pow(ball2.velocityY - ball1.velocityY,2))
     let collisionTime2 = ( ball1.diameter/2 + ball2.diameter/2 - Math.sqrt(Math.pow(ball1.centerX - ball2.centerX,2) + Math.pow(ball2.centerY - ball1.centerY,2))) / Math.sqrt(Math.pow(ball2.velocityX - ball1.velocityX,2) + Math.pow(ball2.velocityY - ball1.velocityY,2))
@@ -240,7 +243,7 @@ function collisionTimeBalls2D(ball1, ball2, logTimes){
     return smallesTime
 }
 
-function collisionTimeBalls1D(ball1, ball2, logTimes){
+export function collisionTimeBalls1D(ball1, ball2, logTimes){
     let collisionTime1 = (ball1.diameter/2 + ball2.diameter/2 + ball1.centerX - ball2.centerX ) / (ball2.velocityX - ball1.velocityX)
     let collisionTime2 = (-ball1.diameter/2 - ball2.diameter/2 + ball1.centerX - ball2.centerX ) / (ball2.velocityX - ball1.velocityX)
     
@@ -259,7 +262,7 @@ function collisionTimeBalls1D(ball1, ball2, logTimes){
  * @param {*} ball1 
  * @param {*} ball2 
  */
-function calculateCollisionBallsOnSegment(ball1, ball2){
+export function calculateCollisionBallsOnSegment(ball1, ball2){
     if(!(ball1 instanceof ThrowBall)) throw new Error("ball1 is not instance of Throwball")
     if(!(ball2 instanceof ThrowBall)) throw new Error("ball2 is not instance of Throwball")
     //elastic collision
@@ -270,7 +273,7 @@ function calculateCollisionBallsOnSegment(ball1, ball2){
 
 }
 
-function calulateCollisionBallsInAir(ballOnSegment, ballInAir){
+export function calulateCollisionBallsInAir(ballOnSegment, ballInAir){
     if(!(ballOnSegment instanceof ThrowBall)) throw new Error("ballOnSegment is not instance of Throwball")
     if(!(ballInAir instanceof ThrowBall)) throw new Error("ballInAir is not instance of Throwball")
     //direction depends on the collision position

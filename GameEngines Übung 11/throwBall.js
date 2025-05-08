@@ -1,5 +1,8 @@
-
-class ThrowBall extends CircleObject{
+import CircleObject from "./circleObject.js"
+import SegmentBallData from "./collisionChecking.js"
+import Segment from "./segment.js"
+import Vector from "./vector.js"
+export default class ThrowBall extends CircleObject{
     
     //stateMachine = new BallStateMachine(this)
     stuckToSeesaw = true

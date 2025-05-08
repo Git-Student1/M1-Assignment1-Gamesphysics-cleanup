@@ -32,9 +32,25 @@
  *  segment vector ist ungenau, 
  *  oder angle in throball on slope berechnung ist ungenau
  */
+import {Seesaw} from "./seesaw.js"
+import SeesawLeft from "./seesaw.js"
+import {SeesawRight} from "./seesaw.js"
+import ThrowBall from "./throwBall.js"
+import SegmentBallData from "./collisionChecking.js"
+import SensitiveCircle from "./sensitiveCircle.js"
+import State from "./states.js"
+import StartResetButton from "./startResetButton.js"
+import Segment from "./segment.js"
+import Vector from "./vector.js"
+import Wind from "./wind.js"
+import GameData from "./gameData.js"
+import {collisionBallsAir, checkCollisionWithSegments, collisionBalls, collisionTimeBalls2D, calculateCollisionBallsOnSegment} from "./collisionChecking.js"
+
+
+console.log("test")
 
 /*declaration*/
-let M; //ein meter sind x (hier 1000) pixel
+let M; //ein meter sind x (hier 1000) pixel 
 let backgroundColor = 100;
 
 let canvasWidth = window.innerWidth;
@@ -101,7 +117,7 @@ let seesawBallStopX = seesawBaseX + Seesaw._plankWidth/2 - ballDiameter -Seesaw.
 
 let seesawLeft = new SeesawLeft(-seesawBaseX,bottom, maxRotation, seeSawSupportHeight, -seesawBallStopX)
 let seesawRight = new SeesawRight(seesawBaseX,bottom, maxRotation, seeSawSupportHeight, seesawBallStopX)
-
+console.log(seesawLeft)
 
 //red bounds
 let redBoundCenterX = seesawBaseRightX - 0.2  -redBoundWidth/2
@@ -182,6 +198,26 @@ let collisionAirRight = false
 
 let resultText
 
+
+//kartesische  x Koordinate zu interne x Koordinate
+export function kXi(kx){
+  return (kx+xi0);
+}
+//kartesische  y Koordinate zu interne y Koordinate (von der Moodle Dokumentation)
+export function kYi(ky){
+  return (yi0-ky);
+}
+
+// interne x Koordinate zu kartesische x Koordinate
+export function iXk(ix){
+  return(ix-xi0)
+}
+// interne y Koordinate zu kartesische y Koordinate
+export function iYk(iy){
+  return(yi0-iy)
+}
+
+
 function setup() {
   createCanvas(canvasWidth,canvasHeight);
   frameRate()
@@ -203,19 +239,21 @@ if(!(segmentArray[1] instanceof Segment)) throw new Error()
 segmentBallDataCochonnet = new SegmentBallData(segmentArray[1], segmentArray[1].length/2)
 
 wind.updateSpeed()
+console.log("rotation:")
+console.log(seesawLeft.rotation)
+//updateValues of the sensitive circle
+sensitiveCircleLeft.rotateAroundSeesawCenter(radians(seesawLeft.rotation._rotationValue))
+//update values of throw ball
+throwballLeft.rotateAroundSeesawCenter(radians(seesawLeft.rotation._rotationValue))
 
 //updateValues of the sensitive circle
-sensitiveCircleLeft.rotateAroundSeesawCenter(radians(seesawLeft.rotation.rotationValue))
+sensitiveCircleRight.rotateAroundSeesawCenter(radians(seesawRight.rotation._rotationValue))
 //update values of throw ball
-throwballLeft.rotateAroundSeesawCenter(radians(seesawLeft.rotation.rotationValue))
-
-//updateValues of the sensitive circle
-sensitiveCircleRight.rotateAroundSeesawCenter(radians(seesawRight.rotation.rotationValue))
-//update values of throw ball
-throwballRight.rotateAroundSeesawCenter(radians(seesawRight.rotation.rotationValue))
+throwballRight.rotateAroundSeesawCenter(radians(seesawRight.rotation._rotationValue))
 
 let resultText = ""
 }
+
 
 function calulateEndPointsOfLine(centerPoint, rotatationDegree, length){
   if(!centerPoint.x || !centerPoint.y) throw new Error("point parameter has no x and/or y value")
@@ -351,9 +389,9 @@ rectMode(CENTER)
     ellipse(kXi(segmentPointArray[2].x*M), kYi(segmentPointArray[2].y*M), 20, 20)
     ellipse(kXi(segmentPointArray[3].x*M), kYi(segmentPointArray[3].y*M), 20, 20)
   	*/
-    segmentArray[0].drawLimiter(M)
-    segmentArray[1].drawLimiter(M)
-    segmentArray[2].drawLimiter(M)
+    segmentArray[0].drawLimiter(M, kXi, kYi)
+    segmentArray[1].drawLimiter(M, kXi, kYi)
+    segmentArray[2].drawLimiter(M, kXi, kYi)
     //red bounds
     fill(255,0,0)
     rect(kXi(redBound1CenterX*M),kYi(redBoundStartY*M), redBoundWidth*M, redBoundHeight*M  )
@@ -635,7 +673,8 @@ function handleMovementOverSegmentLimits(throwball, segmentBallData){
 function collisionCase(ball1, ball2, segmentBallData1, segmentBallData2){
   //TODO: balls get stuck in each other so the collisioncalulation cannot be so accurate
   //the balls are not moved close do each other before the collision, the collision happens when there is still a random distance  (that will be crossed between the 2 frames of the collision) between them
-   timeUntilCollision = collisionTimeBalls2D(ball1, ball2)
+  //TODO: timeUntilCollision shopuld be used
+  let timeUntilCollision = collisionTimeBalls2D(ball1, ball2)
    //ball1.calulateNextPositionOnSlope(timeUntilCollision, segmentBallData1)
    //ball2.calulateNextPositionOnSlope(timeUntilCollision, segmentBallData2)
   calculateCollisionBallsOnSegment(ball1, ball2)
@@ -670,20 +709,19 @@ function windowResized(){
 
 
 
-//kartesische  x Koordinate zu interne x Koordinate
-function kXi(kx){
-    return (kx+xi0);
-}
-//kartesische  y Koordinate zu interne y Koordinate (von der Moodle Dokumentation)
-function kYi(ky){
-    return (yi0-ky);
-}
 
-// interne x Koordinate zu kartesische x Koordinate
-function iXk(ix){
-    return(ix-xi0)
-}
-// interne y Koordinate zu kartesische y Koordinate
-function iYk(iy){
-    return(yi0-iy)
-}
+
+
+
+
+window.setup = setup
+window.draw = draw
+window.mouseClicked = mouseClicked
+window.mousePressed = mousePressed
+window.mouseReleased = mouseReleased
+window.windowResized = windowResized
+
+window.kXi = kXi
+window.kYi = kYi
+window.iXk = iXk
+window.iYk = iYk

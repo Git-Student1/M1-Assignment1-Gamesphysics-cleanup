@@ -1,4 +1,7 @@
-class Seesaw{
+import { SeesawRotationLeft } from "./seesawRotation"
+import { SeesawRotationRight } from "./seesawRotation"
+
+export class Seesaw{
     static _plankHeight = 0.006
     static _plankWidth = 0.25
     static _ballStopWidth = 0.02
@@ -21,6 +24,7 @@ class Seesaw{
      * @param {Number} ballStopX - x value of the ball stop
      */
     constructor(seesawBaseX, seesawBaseY, maxRotation, supportHeight, ballStopX){
+        console.log("constructor Seesaw")
         this._seesawBaseX = seesawBaseX
         this._seesawBaseY = seesawBaseY
         this._maxRotation = maxRotation
@@ -298,7 +302,7 @@ class Seesaw{
 
 //TODO: left and right seesaw needs upper border property, the rest can be moved to superclass
 
-class SeesawLeft extends Seesaw{
+export default class SeesawLeft extends Seesaw{
     /**
      * 
      * @param {Number} seesawBaseX - x center of seesaw
@@ -307,14 +311,18 @@ class SeesawLeft extends Seesaw{
      * @param {Number} supportHeight - height of the support
      * @param {Number} ballStopX - x value of the ball stop
      */
+    //*@type {SeesawRotationLeft} */ 
+    rotation;
     constructor(seesawBaseX, seesawBaseY, maxRotation, supportHeight, ballStopX){
         super(seesawBaseX, seesawBaseY, maxRotation, supportHeight, ballStopX)
         this.rotation = new SeesawRotationLeft(seesawBaseX, this._plankCenterY, maxRotation)
+        console.log("constructor left seesaw")
+        console.log(this.rotation)
     }
 }
 
 
-class SeesawRight extends Seesaw{
+export class SeesawRight extends Seesaw{
     /**
      * 
      * @param {Number} seesawBaseX - x center of seesaw
@@ -323,7 +331,10 @@ class SeesawRight extends Seesaw{
      * @param {Number} supportHeight - height of the support
      * @param {Number} ballStopX - x value of the ball stop
      */
+    //*@type {SeesawRotationRight} */ 
+    rotation;
     constructor(seesawBaseX, seesawBaseY, maxRotation, supportHeight, ballStopX){
+        console.log("constructor right seesaw")
         super(seesawBaseX, seesawBaseY, maxRotation, supportHeight, ballStopX)
         this.rotation = new SeesawRotationRight(seesawBaseX, this._plankCenterY, maxRotation)
     }

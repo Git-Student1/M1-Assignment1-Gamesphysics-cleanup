@@ -1,4 +1,4 @@
-class SeesawRotation{
+export default class SeesawRotation{
     //in degree
     _rotationValue = 0;
 
@@ -92,8 +92,7 @@ class SeesawRotation{
 
 }
 
-
-class SeesawRotationLeft extends SeesawRotation{
+export class SeesawRotationLeft extends SeesawRotation{
     constructor(rotationCenterX,rotationCenterY, maxRotationValue){
     super(rotationCenterX,rotationCenterY, maxRotationValue, 0)
     this.upperBorder = maxRotationValue 
@@ -138,7 +137,7 @@ class SeesawRotationLeft extends SeesawRotation{
     
 }
 
-class SeesawRotationRight extends SeesawRotation{
+export class SeesawRotationRight extends SeesawRotation{
     constructor(rotationCenterX,rotationCenterY, maxRotationValue){
         super(rotationCenterX,rotationCenterY, maxRotationValue,180)
         this.upperBorder = -maxRotationValue 

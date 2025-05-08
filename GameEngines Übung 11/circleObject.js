@@ -1,5 +1,5 @@
 /*eslint no-unused-vars: ["error", { "argsIgnorePattern": "CircleObject" }]*/
-class CircleObject{
+export default class CircleObject{
     constructor(centerX, centerY, diameter,color, mass){
         if(this.constructor == CircleObject) {
             throw new Error("Class is of abstract type and can't be instantiated");
