@@ -153,12 +153,6 @@ export function checkCollisionBallLine(ball, linePoint1, linePoint2){
         return false
 }
 
-function drawLine(originVector, vector2){
-    line(kXi((originVector._x) *M), kYi((originVector._y)*M), kXi((originVector._x+vector2._x) *M),kYi((originVector._y+ vector2._y) *M))
-}
-export function drawLineOrigin(vector1){
-    drawLine(new Vector(0,0),vector1)
-}
 
 function calulateCollisionPoint(ball, segment){
     if(!(ball instanceof ThrowBall)) throw new Error("ball is not instance of Throwball")
