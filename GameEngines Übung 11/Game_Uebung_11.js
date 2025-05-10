@@ -45,6 +45,10 @@ import Vector from "./vector.js"
 import Wind from "./wind.js"
 import GameData from "./gameData.js"
 import {collisionBallsAir, checkCollisionWithSegments, collisionBalls, collisionTimeBalls2D, calculateCollisionBallsOnSegment} from "./collisionChecking.js"
+import p5 from "p5"
+
+
+
 
 
 console.log("test")
@@ -196,7 +200,7 @@ let gameData = new GameData()
 let collisionAirLeft = false
 let collisionAirRight = false
 
-let resultText
+let resultText = ""
 
 
 //kartesische  x Koordinate zu interne x Koordinate
