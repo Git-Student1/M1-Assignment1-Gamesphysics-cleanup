@@ -21,9 +21,9 @@ export default class StartResetButton {
 		return false;
 	}
 	changeText() {
-		this.buttonText === this.buttonTextStart
-			? (this.buttonText = this.buttonTextReset)
-			: (this.buttonText = this.buttonTextStart);
+		this.buttonText === BUTTON_TEXT_START
+			? (this.buttonText = BUTTON_TEXT_RESET)
+			: (this.buttonText = BUTTON_TEXT_START);
 	}
 	draw() {
 		//button
