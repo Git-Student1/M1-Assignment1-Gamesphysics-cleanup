@@ -1,12 +1,13 @@
-class GameData {
-    playerTurns = {
-        PLAYER1: "Player1",
-        PLAYER2: "Player2",
-        GAMEEND: "GameEnd"
-    }
+export default class GameData {
+    
     
 
     constructor(){
+        this.playerTurns = {
+            PLAYER1: "Player1",
+            PLAYER2: "Player2",
+            GAMEEND: "GameEnd"
+        }
         this.playerTurn = this.playerTurns.PLAYER1
     }
 
