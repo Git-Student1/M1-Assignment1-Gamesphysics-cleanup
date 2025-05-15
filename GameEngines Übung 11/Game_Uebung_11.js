@@ -756,12 +756,7 @@ function gameProcess(
 			//WARNING: 2 collisions cannot happen in 1 frame or there will be an error
 			if (collisionBalls(throwball, cochonnet, dt)) {
 				console.log("collision");
-				let timeUntilCollision = collisionCase(
-					throwball,
-					cochonnet,
-					segmentBallData,
-					cochonnetSegmentBallData
-				);
+				let timeUntilCollision = collisionCase(throwball, cochonnet);
 				timeUntilCollisionThrowball = timeUntilCollision;
 				timeUntilCollisionCochonnet = timeUntilCollision;
 			} else {
@@ -773,9 +768,7 @@ function gameProcess(
 							console.log("stuff");
 							let timeUntilCollision = collisionCase(
 								throwball,
-								otherThrowBall,
-								segmentBallData,
-								otherSegmentBallData
+								otherThrowBall
 							);
 							timeUntilCollisionThrowball = timeUntilCollision;
 							timeUntilCollisionOtherThrowball =
@@ -786,9 +779,7 @@ function gameProcess(
 							console.log("collision");
 							let timeUntilCollision = collisionCase(
 								otherThrowBall,
-								cochonnet,
-								otherSegmentBallData,
-								cochonnetSegmentBallData
+								cochonnet
 							);
 							timeUntilCollisionOtherThrowball =
 								timeUntilCollision;
